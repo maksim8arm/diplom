@@ -1,4 +1,4 @@
-version: '3.5'
+version: '3'
 
 services:
   server:
@@ -7,6 +7,8 @@ services:
     environment:
       spring.datasource.url: jdbc:postgresql://db:5432/diplom
       spring.jpa.hibernate.ddl-auto: create-drop
+      spring.datasource.username=postgres
+      spring.datasource.password=test
     ports:
       - "8080:8080"
     depends_on:

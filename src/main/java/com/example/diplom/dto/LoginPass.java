@@ -1,8 +1,5 @@
 package com.example.diplom.dto;
 
-import org.springframework.stereotype.Component;
-
-@Component
 public class LoginPass {
 
     private String login;

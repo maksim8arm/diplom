@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface FileEntityRepository extends JpaRepository<FileEntity, Long> {
+
+    List<FileEntity> findAllByMailUser(String mailUser);
 
     Optional<FileEntity> findFileByFilename(String fileName);
 
@@ -26,8 +29,8 @@ public interface FileEntityRepository extends JpaRepository<FileEntity, Long> {
 
     @Modifying
     @Transactional
-    @Query(value = ("UPDATE files SET filename = ?1 WHERE mail_user =?2"), nativeQuery = true)
-    void renameFile(String newFileName, String mail);
+    @Query(value = ("UPDATE files SET filename = ?1 WHERE mail_user =?2 AND filename = ?3"), nativeQuery = true)
+    void renameFile(String newFileName, String mail, String filename);
 
 
 }

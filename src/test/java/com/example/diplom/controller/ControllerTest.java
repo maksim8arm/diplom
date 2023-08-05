@@ -5,6 +5,7 @@ import com.example.diplom.model.Users;
 import com.example.diplom.repository.FileEntityRepository;
 import com.example.diplom.repository.UsersRepository;
 import com.example.diplom.service.FileService;
+import com.example.diplom.service.UserService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Assert;
 import org.junit.jupiter.api.AfterEach;
@@ -47,15 +48,22 @@ class ControllerTest {
     @Autowired
     private FileService fileService;
     @Autowired
+    private UserService userService;
+    @Autowired
     private UsersRepository usersRepository;
     @Autowired
     private FileEntityRepository fileEntityRepository;
     @Autowired
     private WebApplicationContext webApplicationContext;
+//    @InjectMocks
+//    private final Controller controller = new Controller(
+//            fileService, usersRepository, fileEntityRepository
+//    );
     @InjectMocks
-    private final Controller controller = new Controller(
-            fileService, usersRepository, fileEntityRepository
-    );
+    private final FileController fileController = new FileController(fileService);
+    @InjectMocks
+    private final UserController userController = new UserController(userService);
+
 
     @Container
     static PostgreSQLContainer<?> postConteiner = (PostgreSQLContainer<?>) new PostgreSQLContainer<>("postgres:15.2")
